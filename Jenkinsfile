@@ -31,44 +31,44 @@ pipeline {
                 // Perform security scan using OWASP ZAP
                 echo 'Performing security scan using OWASP ZAP...'
             }
-            post {
-                success {
-                    script {
-                    currentBuild.result = 'SUCCESS'
-                }
-                }
-                failure {
-                    script {
-                        currentBuild.result = 'FAILURE'
-                    }
-                }
-                always {
-                    emailext(
-                        attachLog: true,
-                        subject: "Security Scan Stage Status",
-                        body: "Security Scan Stage Status: $currentBuild.result ; and Log Attached",
-                        to: "trankhanhvinh1999@gmail.com"
-                    )
-                }
-            }
             // post {
             //     success {
-
-
-            //             //attachLog: true,
-            //             mail to: "trankhanhvinh1999@gmail.com",
-            //             subject: "Security Scan Status: SUCCESS",
-            //             body: "Security scan has passed successfully."
+            //         script {
+            //         currentBuild.result = 'SUCCESS'
+            //     }
             //     }
             //     failure {
-            //         emailext(
-            //             to: "trankhanhvinh1999@gmail.com",
-            //             subject: "Security Scan Status: FAILURE",
-            //             body: "Security scan has failed.",
-            //             attachLog: true
-            //             )
+            //         script {
+            //             currentBuild.result = 'FAILURE'
+            //         }
             //     }
-            //}
+            //     always {
+            //         emailext(
+            //             attachLog: true,
+            //             subject: "Security Scan Stage Status",
+            //             body: "Security Scan Stage Status: $currentBuild.result ; and Log Attached",
+            //             to: "trankhanhvinh1999@gmail.com"
+            //         )
+            //     }
+            // }
+            post {
+                success {
+                    emailext(
+                        attachLog: true,
+                        mail to: "trankhanhvinh1999@gmail.com",
+                        subject: "Security Scan Status: SUCCESS",
+                        body: "Security scan has passed successfully."
+                        )
+                }
+                failure {
+                    emailext(
+                        to: "trankhanhvinh1999@gmail.com",
+                        subject: "Security Scan Status: FAILURE",
+                        body: "Security scan has failed.",
+                        attachLog: true
+                        )
+                }
+            }
         }
         
         stage('Deploy to Staging') {
