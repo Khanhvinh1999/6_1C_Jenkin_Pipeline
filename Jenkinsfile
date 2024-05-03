@@ -35,17 +35,19 @@ pipeline {
                 success {
                     emailext(
 
-                        attachLog: true
-                        mail to: "trankhanhvinh1999@gmail.com",
+                        attachLog: true,
+                        to: "trankhanhvinh1999@gmail.com",
                         subject: "Security Scan Status: SUCCESS",
                         body: "Security scan has passed successfully."
                     )
                 }
                 failure {
-                        mail to: "trankhanhvinh1999@gmail.com",
+                    emailext(
+                        to: "trankhanhvinh1999@gmail.com",
                         subject: "Security Scan Status: FAILURE",
-                        body: "Security scan has failed."
-                        //attachLog: true
+                        body: "Security scan has failed.",
+                        attachLog: true
+                        )
                 }
             }
         }
@@ -64,16 +66,20 @@ pipeline {
             }
             post {
                 success {
-                        mail to: "trankhanhvinh1999@gmail.com",
+                    emailext(
+                        to: "trankhanhvinh1999@gmail.com",
                         subject: "Integration Tests on Staging Status: SUCCESS",
-                        body: "Integration tests on staging have passed successfully."
-                        //attachLog: true
+                        body: "Integration tests on staging have passed successfully.",
+                        attachLog: true
+                        )
                 }
                 failure {
-                        mail to: "trankhanhvinh1999@gmail.com",
+                    emailext(
+                        to: "trankhanhvinh1999@gmail.com",
                         subject: "Integration Tests on Staging Status: FAILURE",
-                        body: "Integration tests on staging have failed."
-                        //attachLog: true
+                        body: "Integration tests on staging have failed.",
+                        attachLog: true
+                        )
                 }
             }
         }
