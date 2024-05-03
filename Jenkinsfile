@@ -36,7 +36,7 @@ pipeline {
 
 
                         //attachLog: true,
-                        to: "trankhanhvinh1999@gmail.com",
+                        mail to: "trankhanhvinh1999@gmail.com",
                         subject: "Security Scan Status: SUCCESS",
                         body: "Security scan has passed successfully."
                 }
