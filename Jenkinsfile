@@ -33,13 +33,12 @@ pipeline {
             }
             post {
                 success {
-                    emailext(
+
 
                         //attachLog: true,
                         to: "trankhanhvinh1999@gmail.com",
                         subject: "Security Scan Status: SUCCESS",
                         body: "Security scan has passed successfully."
-                    )
                 }
                 failure {
                     emailext(
